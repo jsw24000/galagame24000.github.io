@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的交互网站</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>我的游戏网站</h1>
+            <ul>
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">关于</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>欢迎来到校园世界</h2>
+                <p>探索无限可能，开启精彩旅程</p>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>关于我们</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>我们的故事</h3>
+                        <p>欢迎来到我们的校园世界！这里是一个充满创意和想象力的空间，我们致力于为每一位访客提供独特的交互体验。</p>
+                        <p>通过九个精心设计的场景，你将能够探索不同的世界，体验各种冒险旅程。从神秘的森林到未来的都市，从古老的文明到梦幻的仙境，每一个按钮背后都藏着一个精彩的故事。</p>
+                        <p>我们的团队由热爱创作和技术的成员组成，希望能够通过这个平台与大家分享我们的想象力和创造力。</p>
+                    </div>
+                    <div class="about-features">
+                        <div class="feature">
+                            <h4>🎮 互动体验</h4>
+                            <p>九个独特的交互场景，带给你不同的冒险感受</p>
+                        </div>
+                        <div class="feature">
+                            <h4>🎨 精美设计</h4>
+                            <p>精心设计的界面和动画效果，提升用户体验</p>
+                        </div>
+                        <div class="feature">
+                            <h4>📱 响应式布局</h4>
+                            <p>在各种设备上都能完美展示，随时随地访问</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="games-section">
+            <div class="container">
+                <h2>选择你的冒险</h2>
+                <p>点击下面的按钮开始探索不同的世界</p>
+                <div class="button-grid">
+                    <button class="game-btn" onclick="openPage('page1.html')">
+                        <span class="btn-number">01</span>
+                        <span class="btn-text"> C# </span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page2.html')">
+                        <span class="btn-number">02</span>
+                        <span class="btn-text">神秘森林</span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page3.html')">
+                        <span class="btn-number">03</span>
+                        <span class="btn-text">太空探索</span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page4.html')">
+                        <span class="btn-number">04</span>
+                        <span class="btn-text">海底世界</span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page5.html')">
+                        <span class="btn-number">05</span>
+                        <span class="btn-text">古代文明</span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page6.html')">
+                        <span class="btn-number">06</span>
+                        <span class="btn-text">未来都市</span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page7.html')">
+                        <span class="btn-number">07</span>
+                        <span class="btn-text">魔法学院</span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page8.html')">
+                        <span class="btn-number">08</span>
+                        <span class="btn-text">西部荒野</span>
+                    </button>
+                    <button class="game-btn" onclick="openPage('page9.html')">
+                        <span class="btn-number">09</span>
+                        <span class="btn-text">梦幻仙境</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 我的交互网站. 版权所有.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
