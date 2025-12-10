@@ -30,27 +30,31 @@
         /* 透明代码文本框 */
         .transparent-code-container {
             position: absolute;
-            /* 计算左上角位置百分比：
-               800/1920 = 41.67%
-               150/1440 = 10.42%
-            */
             left: 40.00%;
             top: 8.50%;
-            
-            /* 计算尺寸百分比：
-               700/1920 = 36.46% (宽度)
-               400/1440 = 27.78% (高度)
-            */
             width: 38.00%;
             height: 28.00%;
-            
-            /* 限制最大尺寸，保持可读性 */
             max-width: 700px;
             max-height: 400px;
             min-width: 400px;
             min-height: 250px;
-            
-            /* 完全透明背景，只有文字显示 */
+            background: transparent;
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        /* 对话框文本框 */
+        .dialog-container {
+            position: absolute;
+            left: 43.75%;
+            top: 48.61%;
+            width: 32.13%;
+            height: 26.34%;
+            max-width: 600px;
+            max-height: 350px;
+            min-width: 350px;
+            min-height: 200px;
             background: transparent;
             border-radius: 12px;
             overflow: hidden;
@@ -58,7 +62,7 @@
         }
 
         /* 透明对话框 */
-        .transparent-code-dialog {
+        .transparent-code-dialog, .dialog-dialog {
             width: 100%;
             height: 100%;
             display: flex;
@@ -67,7 +71,7 @@
         }
 
         /* 透明的对话框头部 */
-        .transparent-dialog-header {
+        .transparent-dialog-header, .dialog-header {
             background: transparent;
             padding: 0.8rem 1rem;
             display: flex;
@@ -76,12 +80,12 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .transparent-window-controls {
+        .transparent-window-controls, .dialog-window-controls {
             display: flex;
             gap: 0.5rem;
         }
 
-        .transparent-control {
+        .transparent-control, .dialog-control {
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -90,11 +94,11 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        .transparent-control.close { background: rgba(255, 95, 87, 0.7); }
-        .transparent-control.minimize { background: rgba(255, 189, 46, 0.7); }
-        .transparent-control.maximize { background: rgba(40, 202, 66, 0.7); }
+        .transparent-control.close, .dialog-control.close { background: rgba(255, 95, 87, 0.7); }
+        .transparent-control.minimize, .dialog-control.minimize { background: rgba(255, 189, 46, 0.7); }
+        .transparent-control.maximize, .dialog-control.maximize { background: rgba(40, 202, 66, 0.7); }
 
-        .transparent-file-name {
+        .transparent-file-name, .dialog-file-name {
             color: rgba(255, 255, 255, 0.9);
             font-family: 'Monaco', 'Consolas', monospace;
             font-size: 0.9rem;
@@ -107,7 +111,7 @@
         }
 
         /* 透明的代码显示区域 */
-        .transparent-dialog-body {
+        .transparent-dialog-body, .dialog-body {
             flex: 1;
             position: relative;
             padding: 0;
@@ -119,7 +123,7 @@
             overflow-anchor: auto;
         }
 
-        .transparent-dialog-body pre {
+        .transparent-dialog-body pre, .dialog-body pre {
             margin: 0;
             background: transparent !important;
             padding: 1.5rem !important;
@@ -128,7 +132,7 @@
             line-height: 1.6;
         }
 
-        .transparent-dialog-body code {
+        .transparent-dialog-body code, .dialog-body code {
             font-family: 'Monaco', 'Consolas', 'Courier New', monospace !important;
             font-size: 14px !important;
             line-height: 1.6 !important;
@@ -172,7 +176,7 @@
         }
 
         /* 打字机光标 */
-        .transparent-typing-cursor {
+        .transparent-typing-cursor, .dialog-typing-cursor {
             display: inline;
             animation: blink 1s infinite;
             color: #36d7e7;
@@ -184,6 +188,16 @@
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
+        }
+
+        /* 对话框文字样式 */
+        .dialog-text {
+            font-family: 'Microsoft YaHei', 'Arial', sans-serif;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
         }
 
         /* 只保留返回按钮 */
@@ -214,24 +228,29 @@
 
         /* 响应式设计 */
         @media (max-width: 1200px) {
-            .transparent-code-container {
+            .transparent-code-container, .dialog-container {
                 min-width: 350px;
                 min-height: 200px;
             }
             
-            .transparent-dialog-body pre {
+            .transparent-dialog-body pre, .dialog-body pre {
                 padding: 1rem !important;
                 font-size: 13px;
             }
             
-            .transparent-dialog-body code {
+            .transparent-dialog-body code, .dialog-body code {
                 font-size: 13px !important;
+            }
+            
+            .dialog-text {
+                font-size: 18px;
+                padding: 15px;
             }
         }
 
         @media (max-width: 768px) {
             /* 在小屏幕上调整文本框大小和位置 */
-            .transparent-code-container {
+            .transparent-code-container, .dialog-container {
                 position: absolute;
                 left: 50%;
                 top: 50%;
@@ -244,28 +263,38 @@
                 min-height: 250px;
             }
             
-            .transparent-dialog-body pre {
+            .transparent-dialog-body pre, .dialog-body pre {
                 padding: 1rem !important;
                 font-size: 12px;
             }
             
-            .transparent-dialog-body code {
+            .transparent-dialog-body code, .dialog-body code {
                 font-size: 12px !important;
+            }
+            
+            .dialog-text {
+                font-size: 16px;
+                padding: 10px;
             }
         }
 
         @media (max-width: 480px) {
-            .transparent-dialog-body pre {
+            .transparent-dialog-body pre, .dialog-body pre {
                 padding: 0.8rem !important;
                 font-size: 11px;
             }
             
-            .transparent-dialog-body code {
+            .transparent-dialog-body code, .dialog-body code {
                 font-size: 11px !important;
             }
             
-            .transparent-file-name {
+            .transparent-file-name, .dialog-file-name {
                 font-size: 0.8rem;
+            }
+            
+            .dialog-text {
+                font-size: 14px;
+                padding: 8px;
             }
             
             .transparent-back-btn {
@@ -295,6 +324,26 @@
         </div>
     </div>
 
+    <!-- 对话框文本框 -->
+    <div class="dialog-container">
+        <div class="dialog-dialog">
+            <div class="dialog-header">
+                <div class="dialog-window-controls">
+                    <span class="dialog-control close"></span>
+                    <span class="dialog-control minimize"></span>
+                    <span class="dialog-control maximize"></span>
+                </div>
+                <span class="dialog-file-name">对话框</span>
+            </div>
+            <div class="dialog-body">
+                <div id="dialog-display" class="dialog-text">
+                    <!-- 对话框内容将在这里显示 -->
+                </div>
+                <div class="dialog-typing-cursor" style="display: none;">|</div>
+            </div>
+        </div>
+    </div>
+
     <!-- 返回按钮 -->
     <button class="transparent-back-btn" onclick="goBack()">返回首页</button>
 
@@ -302,14 +351,20 @@
         // 精简的 C# 示例代码
         const csharpCode = `using System;\nusing System.Linq;\n\nnamespace HelloWorld\n{\n    // HelloPrinter 类\n    class HelloPrinter\n    {\n        // 自动属性\n        public string Content { get; set; }\n        // 构造函数\n        public HelloPrinter(string content)\n        {\n            Content = content;\n        }\n        // 重写 ToString 方法\n        public override string ToString()\n        {\n            return Content;\n        }\n    }\n    class Program\n    {\n        // Main 方法 - 程序入口点\n        static void Main(string[] args)\n        {\n            Console.WriteLine("=== C# Hello World 示例 ===\\n");\n            // 创建对象\n            HelloPrinter printer = new HelloPrinter("🎯 Hello C# World!");\n            // 使用属性\n            Console.WriteLine($"内容: {printer.Content}");\n            \n            // 调用 ToString 方法\n            Console.WriteLine($"字符串表示: {printer.ToString()}");\n            // LINQ 查询示例\n            var numbers = new[] { 1, 2, 3, 4, 5 };\n            var evenNumbers = numbers.Where(n => n % 2 == 0);\n            Console.WriteLine("\\n偶数数字:");\n            foreach (var num in evenNumbers)\n            {\n                Console.WriteLine($"  {num}");\n            }\n            // 等待用户按键\n            Console.WriteLine("\\n🎮 按任意键退出...");\n            Console.ReadKey();\n        }\n    }\n}`;
 
+        // 对话框文本
+        const dialogText = "你好！";
+
         // 打字机效果
         let codeIndex = 0;
         let typingSpeed = 25;
         let isTyping = false;
+        let dialogIndex = 0;
+        let isDialogTyping = false;
 
         function startTypingEffect() {
             const codeElement = document.getElementById('code-display');
             const cursor = document.querySelector('.transparent-typing-cursor');
+            const dialogBody = document.querySelector('.transparent-dialog-body');
             
             if (isTyping) return;
             isTyping = true;
@@ -324,10 +379,9 @@
                     codeIndex++;
                     
                     // 自动滚动到最新内容 - 确保始终显示底部
-                    dialogBody.scrollTop = dialogBody.scrollHeight;
-                
-                    // 确保光标始终可见
-                    cursor.scrollIntoViewIfNeeded(false);
+                    if (dialogBody) {
+                        dialogBody.scrollTop = dialogBody.scrollHeight;
+                    }
                     
                     setTimeout(typeCharacter, typingSpeed);
                 } else {
@@ -335,13 +389,52 @@
                     cursor.style.display = 'none';
                     isTyping = false;
                     // 应用语法高亮
-                    hljs.highlightElement(codeElement);
+                    if (hljs) {
+                        hljs.highlightElement(codeElement);
+                    }
                     // 高亮后再次确保在底部
-                    dialogBody.scrollTop = dialogBody.scrollHeight;
+                    if (dialogBody) {
+                        dialogBody.scrollTop = dialogBody.scrollHeight;
+                    }
+                    // 代码打字完成后开始对话框打字
+                    setTimeout(startDialogTyping, 500);
                 }
             }
             
             typeCharacter();
+        }
+
+        function startDialogTyping() {
+            const dialogElement = document.getElementById('dialog-display');
+            const dialogCursor = document.querySelector('.dialog-typing-cursor');
+            const dialogBody = document.querySelector('.dialog-body');
+            
+            if (isDialogTyping) return;
+            isDialogTyping = true;
+            
+            dialogElement.innerHTML = '';
+            dialogIndex = 0;
+            dialogCursor.style.display = 'inline';
+            
+            function typeDialogCharacter() {
+                if (dialogIndex < dialogText.length) {
+                    dialogElement.innerHTML += dialogText[dialogIndex];
+                    dialogIndex++;
+                    
+                    // 自动滚动到最新内容
+                    if (dialogBody) {
+                        dialogBody.scrollTop = dialogBody.scrollHeight;
+                    }
+                    
+                    setTimeout(typeDialogCharacter, 80); // 对话框打字速度稍快
+                } else {
+                    // 打字完成
+                    dialogCursor.style.display = 'none';
+                    isDialogTyping = false;
+                }
+            }
+            
+            typeDialogCharacter();
         }
 
         // 返回首页
@@ -352,10 +445,12 @@
         // 页面加载完成后开始打字效果
         document.addEventListener('DOMContentLoaded', function() {
             // 初始化代码高亮
-            hljs.configure({
-                tabReplace: '    ',
-                languages: ['csharp']
-            });
+            if (hljs) {
+                hljs.configure({
+                    tabReplace: '    ',
+                    languages: ['csharp']
+                });
+            }
             
             // 延迟0.5秒开始打字效果
             setTimeout(startTypingEffect, 500);
@@ -374,7 +469,9 @@
             // 调整文本框大小以适应图片显示
             function adjustCodeBoxPosition() {
                 const container = document.querySelector('.transparent-code-container');
-                const body = document.body;
+                const dialogContainer = document.querySelector('.dialog-container');
+                
+                if (!container || !dialogContainer) return;
                 
                 // 获取图片实际显示尺寸
                 const img = new Image();
@@ -396,18 +493,31 @@
                     const imgLeft = (screenWidth - actualImgWidth) / 2;
                     const imgTop = (screenHeight - actualImgHeight) / 2;
                     
-                    // 重新计算文本框位置
+                    // 重新计算代码文本框位置 (第一个)
                     const boxLeft = imgLeft + (800 * scaleRatio);
                     const boxTop = imgTop + (150 * scaleRatio);
                     const boxWidth = 700 * scaleRatio;
                     const boxHeight = 400 * scaleRatio;
                     
-                    // 应用计算后的位置
+                    // 重新计算对话框文本框位置 (第二个)
+                    const dialogBoxLeft = imgLeft + (840 * scaleRatio);  // 43.75% 对应 840px
+                    const dialogBoxTop = imgTop + (700 * scaleRatio);    // 48.61% 对应 700px
+                    const dialogBoxWidth = 616 * scaleRatio;            // 32.13% 对应 616px
+                    const dialogBoxHeight = 380 * scaleRatio;           // 26.34% 对应 380px
+                    
+                    // 应用计算后的位置到第一个文本框
                     container.style.position = 'absolute';
                     container.style.left = boxLeft + 'px';
                     container.style.top = boxTop + 'px';
                     container.style.width = boxWidth + 'px';
                     container.style.height = boxHeight + 'px';
+                    
+                    // 应用计算后的位置到第二个文本框
+                    dialogContainer.style.position = 'absolute';
+                    dialogContainer.style.left = dialogBoxLeft + 'px';
+                    dialogContainer.style.top = dialogBoxTop + 'px';
+                    dialogContainer.style.width = dialogBoxWidth + 'px';
+                    dialogContainer.style.height = dialogBoxHeight + 'px';
                 };
             }
             
@@ -419,7 +529,13 @@
 
             // 初始确保滚动条在顶部
             const dialogBody = document.querySelector('.transparent-dialog-body');
-            dialogBody.scrollTop = 0;
+            const dialogBody2 = document.querySelector('.dialog-body');
+            if (dialogBody) {
+                dialogBody.scrollTop = 0;
+            }
+            if (dialogBody2) {
+                dialogBody2.scrollTop = 0;
+            }
         });
     </script>
 </body>
