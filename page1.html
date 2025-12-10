@@ -34,15 +34,15 @@
                800/1920 = 41.67%
                150/1440 = 10.42%
             */
-            left: 41.67%;
-            top: 10.42%;
+            left: 40.00%;
+            top: 8.50%;
             
             /* 计算尺寸百分比：
                700/1920 = 36.46% (宽度)
                400/1440 = 27.78% (高度)
             */
-            width: 36.46%;
-            height: 27.78%;
+            width: 38.00%;
+            height: 28.00%;
             
             /* 限制最大尺寸，保持可读性 */
             max-width: 700px;
@@ -113,6 +113,10 @@
             padding: 0;
             overflow-y: auto;
             background: transparent;
+            /* 确保平滑滚动 */
+            scroll-behavior: smooth;
+            /* 防止内容被裁剪 */
+            overflow-anchor: auto;
         }
 
         .transparent-dialog-body pre {
@@ -296,7 +300,7 @@
 
     <script>
         // 精简的 C# 示例代码
-        const csharpCode = `using System;\nusing System.Linq;\n\nnamespace HelloWorld\n{\n    // HelloPrinter 类\n    class HelloPrinter\n    {\n        // 自动属性\n        public string Content { get; set; }\n        \n        // 构造函数\n        public HelloPrinter(string content)\n        {\n            Content = content;\n        }\n        \n        // 重写 ToString 方法\n        public override string ToString()\n        {\n            return Content;\n        }\n    }\n    \n    class Program\n    {\n        // Main 方法 - 程序入口点\n        static void Main(string[] args)\n        {\n            Console.WriteLine("=== C# Hello World 示例 ===\\n");\n            \n            // 创建对象\n            HelloPrinter printer = new HelloPrinter("🎯 Hello C# World!");\n            \n            // 使用属性\n            Console.WriteLine($"内容: {printer.Content}");\n            \n            // 调用 ToString 方法\n            Console.WriteLine($"字符串表示: {printer.ToString()}");\n            \n            // LINQ 查询示例\n            var numbers = new[] { 1, 2, 3, 4, 5 };\n            var evenNumbers = numbers.Where(n => n % 2 == 0);\n            \n            Console.WriteLine("\\n偶数数字:");\n            foreach (var num in evenNumbers)\n            {\n                Console.WriteLine($"  {num}");\n            }\n            \n            // 等待用户按键\n            Console.WriteLine("\\n🎮 按任意键退出...");\n            Console.ReadKey();\n        }\n    }\n}`;
+        const csharpCode = `using System;\nusing System.Linq;\n\nnamespace HelloWorld\n{\n    // HelloPrinter 类\n    class HelloPrinter\n    {\n        // 自动属性\n        public string Content { get; set; }\n        // 构造函数\n        public HelloPrinter(string content)\n        {\n            Content = content;\n        }\n        // 重写 ToString 方法\n        public override string ToString()\n        {\n            return Content;\n        }\n    }\n    class Program\n    {\n        // Main 方法 - 程序入口点\n        static void Main(string[] args)\n        {\n            Console.WriteLine("=== C# Hello World 示例 ===\\n");\n            // 创建对象\n            HelloPrinter printer = new HelloPrinter("🎯 Hello C# World!");\n            // 使用属性\n            Console.WriteLine($"内容: {printer.Content}");\n            \n            // 调用 ToString 方法\n            Console.WriteLine($"字符串表示: {printer.ToString()}");\n            // LINQ 查询示例\n            var numbers = new[] { 1, 2, 3, 4, 5 };\n            var evenNumbers = numbers.Where(n => n % 2 == 0);\n            Console.WriteLine("\\n偶数数字:");\n            foreach (var num in evenNumbers)\n            {\n                Console.WriteLine($"  {num}");\n            }\n            // 等待用户按键\n            Console.WriteLine("\\n🎮 按任意键退出...");\n            Console.ReadKey();\n        }\n    }\n}`;
 
         // 打字机效果
         let codeIndex = 0;
@@ -319,9 +323,11 @@
                     codeElement.textContent += csharpCode[codeIndex];
                     codeIndex++;
                     
-                    // 自动滚动到最新内容
-                    const preElement = codeElement.parentElement;
-                    preElement.scrollTop = preElement.scrollHeight;
+                    // 自动滚动到最新内容 - 确保始终显示底部
+                    dialogBody.scrollTop = dialogBody.scrollHeight;
+                
+                    // 确保光标始终可见
+                    cursor.scrollIntoViewIfNeeded(false);
                     
                     setTimeout(typeCharacter, typingSpeed);
                 } else {
@@ -330,6 +336,8 @@
                     isTyping = false;
                     // 应用语法高亮
                     hljs.highlightElement(codeElement);
+                    // 高亮后再次确保在底部
+                    dialogBody.scrollTop = dialogBody.scrollHeight;
                 }
             }
             
@@ -408,6 +416,10 @@
             
             // 窗口大小改变时重新调整
             window.addEventListener('resize', adjustCodeBoxPosition);
+
+            // 初始确保滚动条在顶部
+            const dialogBody = document.querySelector('.transparent-dialog-body');
+            dialogBody.scrollTop = 0;
         });
     </script>
 </body>
