@@ -48,7 +48,7 @@
         .dialog-container {
             position: absolute;
             left: 43.75%;
-            top: 48.61%;
+            top: 45.61%;
             width: 32.13%;
             height: 26.34%;
             max-width: 600px;
@@ -70,44 +70,30 @@
             background: transparent;
         }
 
-        /* 透明的对话框头部 */
+        /* 透明的对话框头部 - 修改：移除窗口控制按钮和文件名 */
         .transparent-dialog-header, .dialog-header {
             background: transparent;
-            padding: 0.8rem 1rem;
+            padding: 0.5rem 1rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* 将内容靠右对齐 */
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            height: 30px; /* 设置固定高度 */
+            min-height: 30px;
         }
 
+        /* 隐藏窗口控制按钮 */
         .transparent-window-controls, .dialog-window-controls {
-            display: flex;
-            gap: 0.5rem;
+            display: none; /* 完全隐藏窗口控制按钮 */
         }
 
         .transparent-control, .dialog-control {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: none; /* 隐藏单个控制按钮 */
         }
-        .transparent-control.close, .dialog-control.close { background: rgba(255, 95, 87, 0.7); }
-        .transparent-control.minimize, .dialog-control.minimize { background: rgba(255, 189, 46, 0.7); }
-        .transparent-control.maximize, .dialog-control.maximize { background: rgba(40, 202, 66, 0.7); }
 
+        /* 隐藏文件名 */
         .transparent-file-name, .dialog-file-name {
-            color: rgba(255, 255, 255, 0.9);
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            background: rgba(0, 0, 0, 0.2);
+            display: none; /* 隐藏文件名 */
         }
 
         /* 透明的代码显示区域 */
@@ -288,10 +274,6 @@
                 font-size: 11px !important;
             }
             
-            .transparent-file-name, .dialog-file-name {
-                font-size: 0.8rem;
-            }
-            
             .dialog-text {
                 font-size: 14px;
                 padding: 8px;
@@ -310,12 +292,7 @@
     <div class="transparent-code-container">
         <div class="transparent-code-dialog">
             <div class="transparent-dialog-header">
-                <div class="transparent-window-controls">
-                    <span class="transparent-control close"></span>
-                    <span class="transparent-control minimize"></span>
-                    <span class="transparent-control maximize"></span>
-                </div>
-                <span class="transparent-file-name">C#_HelloWorld.cs</span>
+                <!-- 移除了窗口控制按钮和文件名 -->
             </div>
             <div class="transparent-dialog-body">
                 <pre><code class="language-csharp" id="code-display">// 代码将在这里以打字机效果显示...</code></pre>
@@ -328,12 +305,7 @@
     <div class="dialog-container">
         <div class="dialog-dialog">
             <div class="dialog-header">
-                <div class="dialog-window-controls">
-                    <span class="dialog-control close"></span>
-                    <span class="dialog-control minimize"></span>
-                    <span class="dialog-control maximize"></span>
-                </div>
-                <span class="dialog-file-name">对话框</span>
+                <!-- 移除了窗口控制按钮和文件名 -->
             </div>
             <div class="dialog-body">
                 <div id="dialog-display" class="dialog-text">
