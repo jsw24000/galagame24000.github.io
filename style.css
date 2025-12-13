@@ -70,13 +70,13 @@ main {
     width: 100%;
     min-height: 60vh;
     background: url('images/back_main.png') no-repeat center center;
-    background-size: 100% auto; /* 关键：宽度100%，高度自动保持比例 */
+    background-size: cover; /* 改为100% auto */
     background-color: #000;
     position: relative;
     margin-bottom: 50px;
     overflow: hidden;
     display: flex;
-    align-items: flex-start; /* 顶部对齐，防止被裁剪 */
+    align-items: center; /* 改为居中对齐 */
     justify-content: center;
 }
 
