@@ -6,107 +6,7 @@
     <title>我的交互网站</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background-color: #f5f5f5; /* 添加浅灰色背景 */
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-        }
         
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem 0;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        main {
-            min-height: 80vh;
-        }
-        
-        /* 移除hero部分的紫色背景和文字 */
-        .hero {
-            display: none; /* 完全隐藏hero部分 */
-        }
-        
-        /* 保留其他部分的样式 */
-        .games-section {
-            padding: 40px 20px;
-            background-color: #fff;
-        }
-        
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .game-btn {
-            aspect-ratio: 1;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
-            position: relative;
-        }
-        
-        .game-btn:hover {
-            transform: scale(1.05);
-            background-color: #45a049;
-        }
-        
-        .btn-number {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .button-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .button-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
@@ -121,8 +21,13 @@
     </header>
 
     <main>
-        <!-- hero部分已删除 -->
-        
+        <section id="home" class="hero">
+            <div class="container">
+                <h2></h2>
+                <p></p>
+            </div>
+        </section>
+
         <section id="about" class="about-section">
             <div class="container">
                 <h2>关于我们</h2>
@@ -195,9 +100,8 @@
     </footer>
 
     <script>
-        function openPage(page) {
-            window.location.href = page;
-        }
+        // 保持原有的跳转逻辑
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
