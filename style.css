@@ -112,31 +112,40 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-top: 50px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
     z-index: 2;
 }
 
 /* 游戏按钮样式 */
 .game-btn {
+    width: 100%;
+    aspect-ratio: 0.56; /* 宽度:高度 = 0.56:1 */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
-    padding: 30px 20px;
-    color: white;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    min-height: 120px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    backdrop-filter: blur(5px);
+    align-items: center;
+    padding: 0;
+}
+
+/* 第一个按钮的特殊样式 */
+.button-grid button:nth-child(1) {
+    background-image: url('images/preview_Csharp.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .game-btn:hover {

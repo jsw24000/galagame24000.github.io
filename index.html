@@ -6,72 +6,7 @@
     <title>我的交互网站</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 添加自定义样式来实现按钮的调整 */
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
         
-        .game-btn {
-            width: 100%;
-            aspect-ratio: 0.56; /* 宽度:高度 = 0.56:1 */
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            background-color: #4a6fa5;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-        }
-        
-        /* 第一个按钮的特殊样式 */
-        .button-grid button:nth-child(1) {
-            background-image: url('images/preview_Csharp.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        .btn-number {
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        
-        .game-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* 响应式调整 */
-        @media (max-width: 768px) {
-            .button-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .button-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -166,9 +101,6 @@
 
     <script>
         // 保持原有的跳转逻辑
-        function openPage(page) {
-            window.location.href = page;
-        }
     </script>
     <script src="script.js"></script>
 </body>
