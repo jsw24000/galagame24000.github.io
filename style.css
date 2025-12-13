@@ -69,16 +69,12 @@ main {
 .image-showcase {
     width: 100%;
     min-height: 60vh;
-    background: url('images/back_main.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #000; /* 添加黑色背景 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: url('images/back_main.png') no-repeat center center;
+    background-size: cover; /* 这是关键，让图片覆盖整个区域 */
+    background-color: #000; /* 背景色作为后备 */
     position: relative;
     margin-bottom: 50px;
+    overflow: hidden;
 }
 
 /* 关于区域样式 - 调整上边距 */
@@ -316,6 +312,8 @@ html { scroll-behavior: smooth; }
 
     .image-showcase {
         min-height: 50vh;
+        background-size: cover; /* 在移动设备上仍然使用cover */
+        background-position: center center;
     }
 
     .button-grid {
@@ -336,6 +334,8 @@ html { scroll-behavior: smooth; }
 @media (max-width: 480px) {
     .image-showcase {
         min-height: 40vh;
+        background-size: cover;
+        background-position: center center;
     }
 
     .button-grid {
