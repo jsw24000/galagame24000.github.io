@@ -68,15 +68,16 @@ main {
 /* 图片展示区域 */
 .image-showcase {
     width: 100%;
-    /* 根据图片比例计算高度：宽度100%，高度按比例计算 */
-    height: calc(100vw * (1280 / 2503)); /* 1280/2503 ≈ 0.511 */
-    min-height: 60vh; /* 保留最小高度，防止在宽屏上太矮 */
+    min-height: 60vh;
     background: url('images/back_main.png') no-repeat center center;
-    background-size: 100% 100%; /* 先使用100% 100%确保宽度占满 */
+    background-size: 100% auto; /* 关键：宽度100%，高度自动保持比例 */
     background-color: #000;
     position: relative;
     margin-bottom: 50px;
     overflow: hidden;
+    display: flex;
+    align-items: flex-start; /* 顶部对齐，防止被裁剪 */
+    justify-content: center;
 }
 
 /* 关于区域样式 - 调整上边距 */
@@ -314,8 +315,8 @@ html { scroll-behavior: smooth; }
 
     .image-showcase {
         min-height: 50vh;
-        background-size: cover; /* 在移动设备上仍然使用cover */
-        background-position: center center;
+        background-size: 100% auto; /* 保持相同设置 */
+        background-position: center top; /* 顶部对齐 */
     }
 
     .button-grid {
@@ -336,8 +337,8 @@ html { scroll-behavior: smooth; }
 @media (max-width: 480px) {
     .image-showcase {
         min-height: 40vh;
-        background-size: cover;
-        background-position: center center;
+        background-size: 100% auto; /* 保持相同设置 */
+        background-position: center top; /* 顶部对齐 */
     }
 
     .button-grid {
