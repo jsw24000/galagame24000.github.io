@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的交互网站</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        
-    </style>
 </head>
 <body>
     <header>
@@ -21,11 +18,9 @@
     </header>
 
     <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h2></h2>
-                <p></p>
-            </div>
+        <!-- 图片展示区域 -->
+        <section id="home" class="image-showcase">
+            <!-- 这里显示 back_main.png 图片 -->
         </section>
 
         <section id="about" class="about-section">
@@ -100,7 +95,9 @@
     </footer>
 
     <script>
-        // 保持原有的跳转逻辑
+        function openPage(page) {
+            window.location.href = page;
+        }
     </script>
     <script src="script.js"></script>
 </body>
