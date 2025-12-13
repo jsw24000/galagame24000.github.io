@@ -147,6 +147,69 @@ main {
     background-position: center;
     background-repeat: no-repeat;
 }
+/* 第二个按钮的特殊样式 */
+.button-grid button:nth-child(2) {
+    background-image: url('images/preview_C.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 第三个按钮的特殊样式 - C++ */
+.button-grid button:nth-child(3) {
+    background-image: url('images/preview_Cplus.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 第四个按钮的特殊样式 - Java */
+.button-grid button:nth-child(4) {
+    background-image: url('images/preview_Java.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 第五个按钮的特殊样式 - JavaScript */
+.button-grid button:nth-child(5) {
+    background-image: url('images/preview_JavaScript.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 第六个按钮的特殊样式 - LaTeX */
+.button-grid button:nth-child(6) {
+    background-image: url('images/preview_LaTeX.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 第七个按钮的特殊样式 - Markdown */
+.button-grid button:nth-child(7) {
+    background-image: url('images/preview_Markdown.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 第八个按钮的特殊样式 - Python */
+.button-grid button:nth-child(8) {
+    background-image: url('images/preview_Python.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 第九个按钮的特殊样式 - Rust */
+.button-grid button:nth-child(9) {
+    background-image: url('images/preview_Rust.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 .game-btn:hover {
     transform: translateY(-5px) scale(1.05);
