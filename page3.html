@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ 语言介绍</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入代码高亮库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/c.min.js"></script>
+    <style>
+        /* 全屏背景图 - 无遮挡 */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('images/back_Cplus.png');
+            background-size: contain;  /* 改为contain以完整显示图片 */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #000; /* 背景色填充空白区域 */
+            font-family: 'Arial', sans-serif;
+            /* 增加背景亮度 */
+            filter: brightness(1.1);
+        }
+
+        /* 透明代码文本框 */
+        .transparent-code-container {
+            position: absolute;
+            left: 41.30%;
+            top: 9.69%;
+            width: 36.83%;
+            height: 29.08%;
+            max-width: 700px;
+            max-height: 400px;
+            min-width: 400px;
+            min-height: 250px;
+            background: transparent;
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        /* 对话框文本框 */
+        .dialog-container {
+            position: absolute;
+            left: 43.00%;
+            top: 49.40%;
+            width: 33.50%;
+            height: 9.39%;
+            max-width: 600px;
+            max-height: 200px; /* 因为高度较小，可以适当调整最大高度 */
+            min-width: 350px;
+            min-height: 80px;  /* 根据新高度调整最小高度 */
+            background: transparent;
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        /* 透明对话框 */
+        .transparent-code-dialog, .dialog-dialog {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: transparent;
+        }
+
+        /* 透明的对话框头部 - 修改：移除窗口控制按钮和文件名 */
+        .transparent-dialog-header, .dialog-header {
+            background: transparent;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: flex-end; /* 将内容靠右对齐 */
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            height: 30px; /* 设置固定高度 */
+            min-height: 30px;
+        }
+
+        /* 隐藏窗口控制按钮 */
+        .transparent-window-controls, .dialog-window-controls {
+            display: none; /* 完全隐藏窗口控制按钮 */
+        }
+
+        .transparent-control, .dialog-control {
+            display: none; /* 隐藏单个控制按钮 */
+        }
+
+        /* 隐藏文件名 */
+        .transparent-file-name, .dialog-file-name {
+            display: none; /* 隐藏文件名 */
+        }
+
+        /* 隐藏滚动条但保留滚动功能 */
+        .transparent-dialog-body::-webkit-scrollbar,
+        .dialog-body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .transparent-dialog-body,
+        .dialog-body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        /* 透明的代码显示区域 */
+        .transparent-dialog-body, .dialog-body {
+            flex: 1;
+            position: relative;
+            padding: 0;
+            overflow-y: auto;
+            background: transparent;
+            /* 确保平滑滚动 */
+            scroll-behavior: smooth;
+            /* 防止内容被裁剪 */
+            overflow-anchor: auto;
+        }
+
+        .transparent-dialog-body pre, .dialog-body pre {
+            margin: 0;
+            background: transparent !important;
+            padding: 1.5rem !important;
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .transparent-dialog-body code, .dialog-body code {
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace !important;
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            background: transparent !important;
+            padding: 0 !important;
+            display: block;
+            white-space: pre !important;
+            color: rgba(255, 255, 255, 0.95) !important; /* 白色文字 */
+            text-shadow: 
+                0 1px 0 rgba(0, 0, 0, 0.5),
+                0 2px 4px rgba(0, 0, 0, 0.7),
+                0 0 8px rgba(255, 255, 255, 0.1); /* 发光效果 */
+        }
+
+        /* 代码高亮样式覆盖 - 调整为白色系 */
+        .hljs {
+            background: transparent !important;
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+        .hljs-comment { 
+            color: rgba(200, 200, 200, 0.8) !important; 
+            font-style: italic !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+        }
+        .hljs-keyword { 
+            color: rgba(255, 100, 100, 0.95) !important; 
+            font-weight: bold !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+        }
+        .hljs-string { 
+            color: rgba(100, 200, 255, 0.95) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+        }
+        .hljs-title { 
+            color: rgba(200, 150, 255, 0.95) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+        }
+        .hljs-built_in { 
+            color: rgba(100, 220, 255, 0.95) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* 打字机光标 */
+        .transparent-typing-cursor, .dialog-typing-cursor {
+            display: inline;
+            animation: blink 1s infinite;
+            color: #36d7e7;
+            font-weight: bold;
+            margin-left: 2px;
+            text-shadow: 0 0 10px rgba(54, 215, 231, 0.8);
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* 对话框文字样式 */
+        .dialog-text {
+            font-family: 'Microsoft YaHei', 'Arial', sans-serif;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 只保留返回按钮 */
+        .transparent-back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(52, 152, 219, 0.8);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 30px;
+            transition: background 0.3s;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .transparent-back-btn:hover {
+            background: rgba(41, 128, 185, 0.9);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .transparent-code-container, .dialog-container {
+                min-width: 350px;
+                min-height: 200px;
+            }
+            
+            .transparent-dialog-body pre, .dialog-body pre {
+                padding: 1rem !important;
+                font-size: 13px;
+            }
+            
+            .transparent-dialog-body code, .dialog-body code {
+                font-size: 13px !important;
+            }
+            
+            .dialog-text {
+                font-size: 18px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* 在小屏幕上调整文本框大小和位置 */
+            .transparent-code-container, .dialog-container {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                height: 70%;
+                max-width: none;
+                max-height: none;
+                min-width: 300px;
+                min-height: 250px;
+            }
+            
+            .transparent-dialog-body pre, .dialog-body pre {
+                padding: 1rem !important;
+                font-size: 12px;
+            }
+            
+            .transparent-dialog-body code, .dialog-body code {
+                font-size: 12px !important;
+            }
+            
+            .dialog-text {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .transparent-dialog-body pre, .dialog-body pre {
+                padding: 0.8rem !important;
+                font-size: 11px;
+            }
+            
+            .transparent-dialog-body code, .dialog-body code {
+                font-size: 11px !important;
+            }
+            
+            .dialog-text {
+                font-size: 14px;
+                padding: 8px;
+            }
+            
+            .transparent-back-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 透明代码文本框 -->
+    <div class="transparent-code-container">
+        <div class="transparent-code-dialog">
+            <div class="transparent-dialog-header">
+                <!-- 移除了窗口控制按钮和文件名 -->
+            </div>
+            <div class="transparent-dialog-body">
+                <pre><code class="language-c" id="code-display">// 代码将在这里以打字机效果显示...</code></pre>
+                <div class="transparent-typing-cursor">|</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 对话框文本框 -->
+    <div class="dialog-container">
+        <div class="dialog-dialog">
+            <div class="dialog-header">
+                <!-- 移除了窗口控制按钮和文件名 -->
+            </div>
+            <div class="dialog-body">
+                <div id="dialog-display" class="dialog-text">
+                    <!-- 对话框内容将在这里显示 -->
+                </div>
+                <div class="dialog-typing-cursor" style="display: none;">|</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返回按钮 -->
+    <button class="transparent-back-btn" onclick="goBack()">返回首页</button>
+
+    <script>
+        // C 语言示例代码
+        const code = `#include <stdio.h>\n#include <stdlib.h>\n\n// 定义一个简单的结构体\nstruct Point {\n    int x;\n    int y;\n};\n\n// 函数声明\nvoid print_point(struct Point p);\n\nint main() {\n    printf("=== C语言示例程序 ===\\n\\n");\n    \n    // 结构体使用\n    struct Point p1 = {10, 20};\n    printf("点坐标: ");\n    print_point(p1);\n    \n    // 指针使用\n    struct Point *p_ptr = &p1;\n    printf("通过指针访问: x=%d, y=%d\\n", p_ptr->x, p_ptr->y);\n    \n    // 动态内存分配\n    int *numbers = (int*)malloc(5 * sizeof(int));\n    if (numbers == NULL) {\n        printf("内存分配失败!\\n");\n        return 1;\n    }\n    \n    printf("\\n动态数组元素: ");\n    for (int i = 0; i < 5; i++) {\n        numbers[i] = i * 10;\n        printf("%d ", numbers[i]);\n    }\n    printf("\\n");\n    \n    // 释放内存\n    free(numbers);\n    \n    printf("\\n程序执行完毕!\\n");\n    return 0;\n}\n\nvoid print_point(struct Point p) {\n    printf("(%d, %d)\\n", p.x, p.y);\n}`;
+
+        // 对话框文本
+        const dialogText = "你好！";
+
+        // 打字机效果
+        let codeIndex = 0;
+        let typingSpeed = 25;
+        let isTyping = false;
+        let dialogIndex = 0;
+        let isDialogTyping = false;
+
+        function startTypingEffect() {
+            const codeElement = document.getElementById('code-display');
+            const cursor = document.querySelector('.transparent-typing-cursor');
+            const dialogBody = document.querySelector('.transparent-dialog-body');
+            
+            if (isTyping) return;
+            isTyping = true;
+            
+            codeElement.textContent = '';
+            codeIndex = 0;
+            cursor.style.display = 'inline';
+            
+            function typeCharacter() {
+                if (codeIndex < code.length) {
+                    codeElement.textContent += code[codeIndex];
+                    codeIndex++;
+                    
+                    // 自动滚动到最新内容 - 确保始终显示底部
+                    if (dialogBody) {
+                        dialogBody.scrollTop = dialogBody.scrollHeight;
+                    }
+                    
+                    setTimeout(typeCharacter, typingSpeed);
+                } else {
+                    // 打字完成
+                    cursor.style.display = 'none';
+                    isTyping = false;
+                    // 应用语法高亮
+                    if (hljs) {
+                        hljs.highlightElement(codeElement);
+                    }
+                    // 高亮后再次确保在底部
+                    if (dialogBody) {
+                        dialogBody.scrollTop = dialogBody.scrollHeight;
+                    }
+                    // 代码打字完成后开始对话框打字
+                    setTimeout(startDialogTyping, 500);
+                }
+            }
+            
+            typeCharacter();
+        }
+
+        function startDialogTyping() {
+            const dialogElement = document.getElementById('dialog-display');
+            const dialogCursor = document.querySelector('.dialog-typing-cursor');
+            const dialogBody = document.querySelector('.dialog-body');
+            
+            if (isDialogTyping) return;
+            isDialogTyping = true;
+            
+            dialogElement.innerHTML = '';
+            dialogIndex = 0;
+            dialogCursor.style.display = 'inline';
+            
+            function typeDialogCharacter() {
+                if (dialogIndex < dialogText.length) {
+                    dialogElement.innerHTML += dialogText[dialogIndex];
+                    dialogIndex++;
+                    
+                    // 自动滚动到最新内容
+                    if (dialogBody) {
+                        dialogBody.scrollTop = dialogBody.scrollHeight;
+                    }
+                    
+                    setTimeout(typeDialogCharacter, 80); // 对话框打字速度稍快
+                } else {
+                    // 打字完成
+                    dialogCursor.style.display = 'none';
+                    isDialogTyping = false;
+                }
+            }
+            
+            typeDialogCharacter();
+        }
+
+        // 返回首页
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        // 页面加载完成后开始打字效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化代码高亮
+            if (hljs) {
+                hljs.configure({
+                    tabReplace: '    ',
+                    languages: ['c']
+                });
+            }
+            
+            // 延迟0.5秒开始打字效果
+            setTimeout(startTypingEffect, 500);
+            
+            // 添加键盘快捷键
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    goBack();
+                }
+                if (e.key === 'r' && e.ctrlKey) {
+                    e.preventDefault();
+                    startTypingEffect();
+                }
+            });
+            
+            // 调整文本框大小以适应图片显示
+            function adjustCodeBoxPosition() {
+                const container = document.querySelector('.transparent-code-container');
+                const dialogContainer = document.querySelector('.dialog-container');
+                
+                if (!container || !dialogContainer) return;
+                
+                // 获取图片实际显示尺寸
+                const img = new Image();
+                img.src = 'images/back_Cplus.png'; 
+                img.onload = function() {
+                    const imgWidth = img.width;
+                    const imgHeight = img.height;
+                    const screenWidth = window.innerWidth;
+                    const screenHeight = window.innerHeight;
+                    
+                    // 计算图片显示比例
+                    const widthRatio = screenWidth / imgWidth;
+                    const heightRatio = screenHeight / imgHeight;
+                    const scaleRatio = Math.min(widthRatio, heightRatio);
+                    
+                    // 计算图片在屏幕中的实际位置
+                    const actualImgWidth = imgWidth * scaleRatio;
+                    const actualImgHeight = imgHeight * scaleRatio;
+                    const imgLeft = (screenWidth - actualImgWidth) / 2;
+                    const imgTop = (screenHeight - actualImgHeight) / 2;
+                    
+                    // 根据比例计算代码文本框位置 (41.30%, 9.69%, 36.83%, 29.08%)
+                    const boxLeft = imgLeft + (actualImgWidth * 0.4130);
+                    const boxTop = imgTop + (actualImgHeight * 0.0969);
+                    const boxWidth = actualImgWidth * 0.3683;
+                    const boxHeight = actualImgHeight * 0.2908;
+                    
+                    // 根据比例计算对话框文本框位置 (43.00%, 49.40%, 33.50%, 9.39%)
+                    const dialogBoxLeft = imgLeft + (actualImgWidth * 0.4300); // 43.00%
+                    const dialogBoxTop = imgTop + (actualImgHeight * 0.4940);  // 49.40%
+                    const dialogBoxWidth = actualImgWidth * 0.3350;            // 33.50%
+                    const dialogBoxHeight = actualImgHeight * 0.0939;          // 9.39%
+                    
+                    // 应用计算后的位置到第一个文本框
+                    container.style.position = 'absolute';
+                    container.style.left = boxLeft + 'px';
+                    container.style.top = boxTop + 'px';
+                    container.style.width = boxWidth + 'px';
+                    container.style.height = boxHeight + 'px';
+                    
+                    // 应用计算后的位置到第二个文本框
+                    dialogContainer.style.position = 'absolute';
+                    dialogContainer.style.left = dialogBoxLeft + 'px';
+                    dialogContainer.style.top = dialogBoxTop + 'px';
+                    dialogContainer.style.width = dialogBoxWidth + 'px';
+                    dialogContainer.style.height = dialogBoxHeight + 'px';
+                };
+            }
+            
+            // 初始调整
+            adjustCodeBoxPosition();
+            
+            // 窗口大小改变时重新调整
+            window.addEventListener('resize', adjustCodeBoxPosition);
+
+            // 初始确保滚动条在顶部
+            const dialogBody = document.querySelector('.transparent-dialog-body');
+            const dialogBody2 = document.querySelector('.dialog-body');
+            if (dialogBody) {
+                dialogBody.scrollTop = 0;
+            }
+            if (dialogBody2) {
+                dialogBody2.scrollTop = 0;
+            }
+        });
+    </script>
+</body>
+</html>

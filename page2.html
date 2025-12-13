@@ -96,6 +96,19 @@
             display: none; /* 隐藏文件名 */
         }
 
+        /* 隐藏滚动条但保留滚动功能 */
+        .transparent-dialog-body::-webkit-scrollbar,
+        .dialog-body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .transparent-dialog-body,
+        .dialog-body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
         /* 透明的代码显示区域 */
         .transparent-dialog-body, .dialog-body {
             flex: 1;
