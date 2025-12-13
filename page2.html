@@ -48,7 +48,7 @@
         .dialog-container {
             position: absolute;
             left: 43.75%;
-            top: 46.61%;
+            top: 45.61%;
             width: 32.13%;
             height: 26.34%;
             max-width: 600px;
@@ -94,30 +94,6 @@
         /* 隐藏文件名 */
         .transparent-file-name, .dialog-file-name {
             display: none; /* 隐藏文件名 */
-        }
-
-        /* 隐藏滚动条但保留滚动功能 */
-        .transparent-dialog-body::-webkit-scrollbar,
-        .dialog-body::-webkit-scrollbar {
-            display: none;
-        }
-
-        .transparent-dialog-body,
-        .dialog-body {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            scroll-behavior: smooth;
-        }
-
-        /* 为文本框添加半透明边框 */
-        .transparent-code-container {
-            border: 3px dashed rgba(255, 0, 0, 0.6) !important;  /* 红色虚线边框 */
-            background-color: rgba(255, 0, 0, 0.05) !important;  /* 轻微红色背景 */
-        }
-
-        .dialog-container {
-            border: 3px dashed rgba(0, 120, 255, 0.6) !important;  /* 蓝色虚线边框 */
-            background-color: rgba(0, 120, 255, 0.05) !important;  /* 轻微蓝色背景 */
         }
 
         /* 透明的代码显示区域 */
@@ -464,60 +440,58 @@
             
             // 调整文本框大小以适应图片显示
             function adjustCodeBoxPosition() {
-    const container = document.querySelector('.transparent-code-container');
-    const dialogContainer = document.querySelector('.dialog-container');
-    
-    if (!container || !dialogContainer) return;
-    
-    // 获取图片实际显示尺寸
-    const img = new Image();
-    img.src = 'images/back_C.png';  // 确保这是正确的图片路径
-    img.onload = function() {
-        const imgWidth = img.width;
-        const imgHeight = img.height;
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
-        
-        // 计算图片显示比例
-        const widthRatio = screenWidth / imgWidth;
-        const heightRatio = screenHeight / imgHeight;
-        const scaleRatio = Math.min(widthRatio, heightRatio);
-        
-        // 计算图片在屏幕中的实际位置
-        const actualImgWidth = imgWidth * scaleRatio;
-        const actualImgHeight = imgHeight * scaleRatio;
-        const imgLeft = (screenWidth - actualImgWidth) / 2;
-        const imgTop = (screenHeight - actualImgHeight) / 2;
-        
-        // 重要：使用百分比计算位置，而不是固定像素值
-        // 百分比来自 CSS 中的初始设置
-        // 代码文本框：left: 40.00%, top: 8.50%, width: 38.00%, height: 28.00%
-        const codeBoxLeft = imgLeft + (actualImgWidth * 0.40);
-        const codeBoxTop = imgTop + (actualImgHeight * 0.085);
-        const codeBoxWidth = actualImgWidth * 0.38;
-        const codeBoxHeight = actualImgHeight * 0.28;
-        
-        // 对话框文本框：left: 43.75%, top: 46.61%, width: 32.13%, height: 26.34%
-        const dialogBoxLeft = imgLeft + (actualImgWidth * 0.4375);
-        const dialogBoxTop = imgTop + (actualImgHeight * 0.4661);
-        const dialogBoxWidth = actualImgWidth * 0.3213;
-        const dialogBoxHeight = actualImgHeight * 0.2634;
-        
-        // 应用计算后的位置到代码文本框
-        container.style.position = 'absolute';
-        container.style.left = codeBoxLeft + 'px';
-        container.style.top = codeBoxTop + 'px';
-        container.style.width = codeBoxWidth + 'px';
-        container.style.height = codeBoxHeight + 'px';
-        
-        // 应用计算后的位置到对话框文本框
-        dialogContainer.style.position = 'absolute';
-        dialogContainer.style.left = dialogBoxLeft + 'px';
-        dialogContainer.style.top = dialogBoxTop + 'px';
-        dialogContainer.style.width = dialogBoxWidth + 'px';
-        dialogContainer.style.height = dialogBoxHeight + 'px';
-    };
-}
+                const container = document.querySelector('.transparent-code-container');
+                const dialogContainer = document.querySelector('.dialog-container');
+                
+                if (!container || !dialogContainer) return;
+                
+                // 获取图片实际显示尺寸
+                const img = new Image();
+                img.src = 'images/back_C.png';
+                img.onload = function() {
+                    const imgWidth = img.width;
+                    const imgHeight = img.height;
+                    const screenWidth = window.innerWidth;
+                    const screenHeight = window.innerHeight;
+                    
+                    // 计算图片显示比例
+                    const widthRatio = screenWidth / imgWidth;
+                    const heightRatio = screenHeight / imgHeight;
+                    const scaleRatio = Math.min(widthRatio, heightRatio);
+                    
+                    // 计算图片在屏幕中的实际位置
+                    const actualImgWidth = imgWidth * scaleRatio;
+                    const actualImgHeight = imgHeight * scaleRatio;
+                    const imgLeft = (screenWidth - actualImgWidth) / 2;
+                    const imgTop = (screenHeight - actualImgHeight) / 2;
+                    
+                    // 重新计算代码文本框位置 (第一个)
+                    const boxLeft = imgLeft + (800 * scaleRatio);
+                    const boxTop = imgTop + (150 * scaleRatio);
+                    const boxWidth = 700 * scaleRatio;
+                    const boxHeight = 400 * scaleRatio;
+                    
+                    // 重新计算对话框文本框位置 (第二个)
+                    const dialogBoxLeft = imgLeft + (840 * scaleRatio);  // 43.75% 对应 840px
+                    const dialogBoxTop = imgTop + (700 * scaleRatio);    // 48.61% 对应 700px
+                    const dialogBoxWidth = 616 * scaleRatio;            // 32.13% 对应 616px
+                    const dialogBoxHeight = 380 * scaleRatio;           // 26.34% 对应 380px
+                    
+                    // 应用计算后的位置到第一个文本框
+                    container.style.position = 'absolute';
+                    container.style.left = boxLeft + 'px';
+                    container.style.top = boxTop + 'px';
+                    container.style.width = boxWidth + 'px';
+                    container.style.height = boxHeight + 'px';
+                    
+                    // 应用计算后的位置到第二个文本框
+                    dialogContainer.style.position = 'absolute';
+                    dialogContainer.style.left = dialogBoxLeft + 'px';
+                    dialogContainer.style.top = dialogBoxTop + 'px';
+                    dialogContainer.style.width = dialogBoxWidth + 'px';
+                    dialogContainer.style.height = dialogBoxHeight + 'px';
+                };
+            }
             
             // 初始调整
             adjustCodeBoxPosition();
