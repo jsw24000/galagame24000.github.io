@@ -70,8 +70,8 @@ main {
     width: 100%;
     min-height: 60vh;
     background: url('images/back_main.png') no-repeat center center;
-    background-size: cover; /* 这是关键，让图片覆盖整个区域 */
-    background-color: #000; /* 背景色作为后备 */
+    background-size: 100% auto; /* 宽度100%，高度自动 */
+    background-color: #000;
     position: relative;
     margin-bottom: 50px;
     overflow: hidden;
