@@ -30,10 +30,10 @@
         /* 透明代码文本框 */
         .transparent-code-container {
             position: absolute;
-            left: 40.00%;
-            top: 8.50%;
-            width: 38.00%;
-            height: 28.00%;
+            left: 41.30%;
+            top: 9.69%;
+            width: 36.83%;
+            height: 29.08%;
             max-width: 700px;
             max-height: 400px;
             min-width: 400px;
@@ -47,14 +47,14 @@
         /* 对话框文本框 */
         .dialog-container {
             position: absolute;
-            left: 43.75%;
-            top: 45.61%;
-            width: 32.13%;
-            height: 26.34%;
+            left: 43.00%;
+            top: 49.40%;
+            width: 33.50%;
+            height: 9.39%;
             max-width: 600px;
-            max-height: 350px;
+            max-height: 200px; /* 因为高度较小，可以适当调整最大高度 */
             min-width: 350px;
-            min-height: 200px;
+            min-height: 80px;  /* 根据新高度调整最小高度 */
             background: transparent;
             border-radius: 12px;
             overflow: hidden;
@@ -447,7 +447,7 @@
                 
                 // 获取图片实际显示尺寸
                 const img = new Image();
-                img.src = 'images/back_C.png';
+                img.src = 'images/back_C.png'; 
                 img.onload = function() {
                     const imgWidth = img.width;
                     const imgHeight = img.height;
@@ -465,17 +465,17 @@
                     const imgLeft = (screenWidth - actualImgWidth) / 2;
                     const imgTop = (screenHeight - actualImgHeight) / 2;
                     
-                    // 重新计算代码文本框位置 (第一个)
-                    const boxLeft = imgLeft + (800 * scaleRatio);
-                    const boxTop = imgTop + (150 * scaleRatio);
-                    const boxWidth = 700 * scaleRatio;
-                    const boxHeight = 400 * scaleRatio;
+                    // 根据比例计算代码文本框位置 (41.30%, 9.69%, 36.83%, 29.08%)
+                    const boxLeft = imgLeft + (actualImgWidth * 0.4130);
+                    const boxTop = imgTop + (actualImgHeight * 0.0969);
+                    const boxWidth = actualImgWidth * 0.3683;
+                    const boxHeight = actualImgHeight * 0.2908;
                     
-                    // 重新计算对话框文本框位置 (第二个)
-                    const dialogBoxLeft = imgLeft + (840 * scaleRatio);  // 43.75% 对应 840px
-                    const dialogBoxTop = imgTop + (700 * scaleRatio);    // 48.61% 对应 700px
-                    const dialogBoxWidth = 616 * scaleRatio;            // 32.13% 对应 616px
-                    const dialogBoxHeight = 380 * scaleRatio;           // 26.34% 对应 380px
+                    // 根据比例计算对话框文本框位置 (43.00%, 49.40%, 33.50%, 9.39%)
+                    const dialogBoxLeft = imgLeft + (actualImgWidth * 0.4300); // 43.00%
+                    const dialogBoxTop = imgTop + (actualImgHeight * 0.4940);  // 49.40%
+                    const dialogBoxWidth = actualImgWidth * 0.3350;            // 33.50%
+                    const dialogBoxHeight = actualImgHeight * 0.0939;          // 9.39%
                     
                     // 应用计算后的位置到第一个文本框
                     container.style.position = 'absolute';
