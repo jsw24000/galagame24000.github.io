@@ -68,9 +68,11 @@ main {
 /* 图片展示区域 */
 .image-showcase {
     width: 100%;
-    min-height: 60vh;
+    /* 根据图片比例计算高度：宽度100%，高度按比例计算 */
+    height: calc(100vw * (1280 / 2503)); /* 1280/2503 ≈ 0.511 */
+    min-height: 60vh; /* 保留最小高度，防止在宽屏上太矮 */
     background: url('images/back_main.png') no-repeat center center;
-    background-size: 100% auto; /* 宽度100%，高度自动 */
+    background-size: 100% 100%; /* 先使用100% 100%确保宽度占满 */
     background-color: #000;
     position: relative;
     margin-bottom: 50px;
