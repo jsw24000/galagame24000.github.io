@@ -68,7 +68,7 @@ main {
 /* 图片展示区域 */
 .image-showcase {
     width: 100%;
-    min-height: 60vh;
+    min-height: 100vh;
     background: url('images/back_main.png') no-repeat center center;
     background-size: cover; /* 改为100% auto */
     background-color: #000;
