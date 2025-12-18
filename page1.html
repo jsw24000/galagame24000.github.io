@@ -126,7 +126,7 @@
         .ask-text {
             font-family: 'Microsoft YaHei', 'Arial', sans-serif;
             font-size: 18px;
-            color: rgba(172, 44, 112, 0.453);
+            color: rgba(50, 153, 185, 0.453);
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
             padding: 10px 15px;
             text-align: center;
@@ -275,7 +275,7 @@
         .dialog-text {
             font-family: 'Microsoft YaHei', 'Arial', sans-serif;
             font-size: 20px;
-            color: rgba(255, 255, 255, 0.95);
+            color: rgba(168, 32, 116, 0.95);
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
             padding: 20px;
             text-align: center;
@@ -433,7 +433,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask1-text">哥：这道编程题卡住了，帮我看看？</div>
+                <div class="ask-text" id="ask1-text">这道编程题卡住了，帮我看看？</div>
             </div>
         </div>
     </div>
@@ -445,7 +445,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask2-text">哥：项目数据太多理不清了。</div>
+                <div class="ask-text" id="ask2-text">项目数据太多理不清了。</div>
             </div>
         </div>
     </div>
@@ -457,7 +457,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask3-text">哥：代码又报异常了，好烦。</div>
+                <div class="ask-text" id="ask3-text">代码又报异常了，好烦。</div>
             </div>
         </div>
     </div>
@@ -660,7 +660,7 @@
                     const dialogBoxLeft = imgLeft + (actualImgWidth * 0.4300); // 43.00%
                     const dialogBoxTop = imgTop + (actualImgHeight * 0.4940);  // 49.40%
                     const dialogBoxWidth = actualImgWidth * 0.3350;            // 33.50%
-                    const dialogBoxHeight = actualImgHeight * 0.0939;          // 9.39%
+                    const dialogBoxHeight = actualImgHeight * 0.1439;          // 9.39%
                     
                     // 计算ASK文本框位置
                     // 左边界: 0.36, 宽度: 0.502, 高度: 0.041
@@ -669,11 +669,11 @@
                     const askHeight = actualImgHeight * 0.041;
                     
                     // ASK1上边界: 0.702
-                    const ask1Top = imgTop + (actualImgHeight * 0.702);
+                    const ask1Top = imgTop + (actualImgHeight * 0.692);
                     // ASK2上边界: 0.807
-                    const ask2Top = imgTop + (actualImgHeight * 0.807);
+                    const ask2Top = imgTop + (actualImgHeight * 0.797);
                     // ASK3上边界: 0.907
-                    const ask3Top = imgTop + (actualImgHeight * 0.907);
+                    const ask3Top = imgTop + (actualImgHeight * 0.897);
                     
                     // 应用计算后的位置到代码文本框
                     container.style.position = 'absolute';
