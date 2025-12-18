@@ -126,8 +126,10 @@
         .ask-text {
             font-family: 'Microsoft YaHei', 'Arial', sans-serif;
             font-size: 18px;
-            color: rgba(50, 153, 185, 0.453);
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+            color: rgba(50, 153, 185, 0.85);
+            text-shadow: 
+                0 2px 6px rgba(0, 0, 0, 0.9),
+                 0 0 2px rgba(255, 255, 255, 0.3); /* 添加同色系发光 */
             padding: 10px 15px;
             text-align: center;
             white-space: nowrap;
@@ -135,6 +137,7 @@
             text-overflow: ellipsis;
             width: 100%;
             transition: all 0.3s ease;
+            font-weight: 600;
         }
 
         /* 悬停时文本效果 */
@@ -658,7 +661,7 @@
                     
                     // 根据比例计算对话框文本框位置 (43.00%, 49.40%, 33.50%, 9.39%)
                     const dialogBoxLeft = imgLeft + (actualImgWidth * 0.4300); // 43.00%
-                    const dialogBoxTop = imgTop + (actualImgHeight * 0.4940);  // 49.40%
+                    const dialogBoxTop = imgTop + (actualImgHeight * 0.4440);  // 49.40%
                     const dialogBoxWidth = actualImgWidth * 0.3350;            // 33.50%
                     const dialogBoxHeight = actualImgHeight * 0.1439;          // 9.39%
                     
