@@ -334,10 +334,10 @@
 
     <script>
         // C 语言示例代码
-        const code = `#include <stdio.h>\n#include <stdlib.h>\n\n// 定义一个简单的结构体\nstruct Point {\n    int x;\n    int y;\n};\n\n// 函数声明\nvoid print_point(struct Point p);\n\nint main() {\n    printf("=== C语言示例程序 ===\\n\\n");\n    \n    // 结构体使用\n    struct Point p1 = {10, 20};\n    printf("点坐标: ");\n    print_point(p1);\n    \n    // 指针使用\n    struct Point *p_ptr = &p1;\n    printf("通过指针访问: x=%d, y=%d\\n", p_ptr->x, p_ptr->y);\n    \n    // 动态内存分配\n    int *numbers = (int*)malloc(5 * sizeof(int));\n    if (numbers == NULL) {\n        printf("内存分配失败!\\n");\n        return 1;\n    }\n    \n    printf("\\n动态数组元素: ");\n    for (int i = 0; i < 5; i++) {\n        numbers[i] = i * 10;\n        printf("%d ", numbers[i]);\n    }\n    printf("\\n");\n    \n    // 释放内存\n    free(numbers);\n    \n    printf("\\n程序执行完毕!\\n");\n    return 0;\n}\n\nvoid print_point(struct Point p) {\n    printf("(%d, %d)\\n", p.x, p.y);\n}`;
+        const code =  `using System;\nclass Program\n{\n    static void Main()\n    {\n        Console.WriteLine("哥哥！你的保温杯我帮你灌满热水啦，刚才摸着手凉飕飕的，肯定又忘了接。");\n    }\n}
 
         // 对话框文本
-        const dialogText = "你好！";
+        const dialogText = "哥哥！你的保温杯我帮你灌满热水啦，刚才摸着手凉飕飕的，肯定又忘了接。";
 
         // 打字机效果
         let codeIndex = 0;
