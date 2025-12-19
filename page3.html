@@ -468,21 +468,7 @@
 
     <script>
         // 精简的 C++ 示例代码
-        const cppCode = `#include <iostream>
-using namespace std;
-
-class Printer{
-public:
-    void printMsg(){
-        cout << "上次机房听你说提神靠这个，我多带了一罐。" << endl;
-    }
-};
-
-int main(){
-    Printer p;
-    p.printMsg();
-    return 0;
-}`;
+        const cppCode = `#include <iostream>\nusing namespace std;\nclass Printer{\npublic:\n    void printMsg(){\n        cout << "上次机房听你说提神靠这个，我多带了一罐。" << endl;\n\n    }\n};\nint main(){\n    Printer p;\n    p.printMsg();\n    return 0;\n}`;
 
         // ASK文本框对应的回答数组
         const askResponses = [
