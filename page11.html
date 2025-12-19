@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C# 语言介绍</title>
+    <title>C++ 语言介绍</title>
     <link rel="stylesheet" href="style.css">
     <!-- 引入代码高亮库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/c.min.js"></script>
     <style>
         /* 全屏背景图 - 无遮挡 */
         body {
@@ -17,7 +17,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background-image: url('images/back_Csharp.png');
+            background-image: url('images/back_Cplus.png');
             background-size: contain;  /* 改为contain以完整显示图片 */
             background-position: center;
             background-repeat: no-repeat;
@@ -434,7 +434,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask1-text">这道编程题卡住了，帮我看看？</div>
+                <div class="ask-text" id="ask1-text">（走过去拿起咖啡，鞠躬道谢）谢谢黑羽老师，您居然还记得我的喜好。</div>
             </div>
         </div>
     </div>
@@ -446,7 +446,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask2-text">项目数据太多理不清了。</div>
+                <div class="ask-text" id="ask2-text">瞥了眼咖啡，挠挠头）谢谢老师，但我今天想喝甜的，就不麻烦您了。</div>
             </div>
         </div>
     </div>
@@ -458,7 +458,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask3-text">代码又报异常了，好烦。</div>
+                <div class="ask-text" id="ask3-text">（走到栏杆边，拿出物理错题本发呆，眉头紧锁）</div>
             </div>
         </div>
     </div>
@@ -467,14 +467,28 @@
     <button class="transparent-back-btn" onclick="goBack()">返回首页</button>
 
     <script>
-        // 精简的 C# 示例代码
-        const csharpCode = `using System;\nclass Program\n{\n    static void Main()\n    {\n        Console.WriteLine("哥哥！你的保温杯我帮你灌满热水啦，刚才摸着手凉飕飕的，肯定又忘了接。");\n    }\n}`;
+        // 精简的 C++ 示例代码
+        const cppCode = `#include <iostream>
+using namespace std;
+
+class Printer{
+public:
+    void printMsg(){
+        cout << "上次机房听你说提神靠这个，我多带了一罐。" << endl;
+    }
+};
+
+int main(){
+    Printer p;
+    p.printMsg();
+    return 0;
+}`;
 
         // ASK文本框对应的回答数组
         const askResponses = [
-            "C#：把草稿本给我，LINQ查询就像整理笔记一样简单。",
-            "C#：用我的泛型集合，像整理书架那样分类存放。",
-            "C#：调试器就像错题本，我陪你一行行检查原因。"
+            "C++：（视线落回题库，耳尖微泛红，语气平稳）你参赛代码有个逻辑漏洞，这里加个循环判断，下午机房我再带你测一遍。",
+            "C++：（指尖捏紧红笔，把咖啡往自己这边挪了挪）嗯，随你。",
+            "C++：（沉默片刻，拿过你的错题本，用指尖点着屏幕）这个递归函数没写终止条件。"
         ];
 
         // 打字机效果
@@ -520,7 +534,7 @@
                         dialogBody.scrollTop = dialogBody.scrollHeight;
                     }
                     // 代码打字完成后开始对话框打字
-                    setTimeout(() => startDialogTyping("哥哥！你的保温杯我帮你灌满热水啦，刚才摸着手凉飕飕的，肯定又忘了接。"), 500);
+                    setTimeout(() => startDialogTyping("（从电脑包摸出罐无糖咖啡放石阶上）上次机房听你说提神靠这个，我多带了一罐。"), 500);
                 }
             }
             
@@ -633,7 +647,7 @@
                 
                 // 获取图片实际显示尺寸
                 const img = new Image();
-                img.src = 'images/back_Csharp.png'; 
+                img.src = 'images/back_Cplus.png'; 
                 img.onload = function() {
                     const imgWidth = img.width;
                     const imgHeight = img.height;
