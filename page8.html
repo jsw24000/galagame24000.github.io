@@ -48,17 +48,100 @@
         .dialog-container {
             position: absolute;
             left: 43.00%;
-            top: 49.40%;
+            top: 45.00%;
             width: 33.50%;
-            height: 9.39%;
+            height: 14.39%;
             max-width: 600px;
-            max-height: 200px; /* 因为高度较小，可以适当调整最大高度 */
+            max-height: 200px;
             min-width: 350px;
-            min-height: 80px;  /* 根据新高度调整最小高度 */
+            min-height: 80px;
             background: transparent;
             border-radius: 12px;
             overflow: hidden;
             z-index: 100;
+        }
+
+        /* ASK文本框样式 - 新增 */
+        .ask-container {
+            position: absolute;
+            background: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* ASK容器悬停效果 */
+        .ask-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ASK容器激活效果 */
+        .ask-container.active {
+            /* background: rgba(52, 152, 219, 0.15);
+            border: 1px solid rgba(52, 152, 219, 0.5);
+            transform: translateY(px); 添加这行，让激活状态向下移动10px */
+        }
+
+        /* ASK对话框 */
+        .ask-dialog {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: transparent;
+        }
+
+        /* ASK对话框头部 */
+        .ask-header {
+            background: transparent;
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            height: 20px;
+            min-height: 20px;
+        }
+
+        /* 隐藏ASK窗口控制按钮 */
+        .ask-window-controls {
+            display: none;
+        }
+
+        /* ASK对话框主体 */
+        .ask-body {
+            flex: 1;
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ASK文本样式 */
+        .ask-text {
+            font-family: 'Microsoft YaHei', 'Arial', sans-serif;
+            font-size: 18px;
+            color: rgba(50, 153, 185, 0.85);
+            padding: 10px 15px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        /* 悬停时文本效果 */
+        .ask-container:hover .ask-text {
+            color: rgba(100, 200, 255, 0.95);
+            text-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
         }
 
         /* 透明对话框 */
@@ -193,7 +276,7 @@
         .dialog-text {
             font-family: 'Microsoft YaHei', 'Arial', sans-serif;
             font-size: 20px;
-            color: rgba(255, 255, 255, 0.95);
+            color: rgba(168, 32, 116, 0.95);
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
             padding: 20px;
             text-align: center;
@@ -202,7 +285,7 @@
         /* 只保留返回按钮 */
         .transparent-back-btn {
             position: fixed;
-            bottom: 30px;
+            bottom: 6px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(52, 152, 219, 0.8);
@@ -245,6 +328,11 @@
                 font-size: 18px;
                 padding: 15px;
             }
+            
+            .ask-text {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -275,6 +363,11 @@
                 font-size: 16px;
                 padding: 10px;
             }
+            
+            .ask-text {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -292,10 +385,15 @@
                 padding: 8px;
             }
             
+            .ask-text {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+            
             .transparent-back-btn {
                 padding: 10px 20px;
                 font-size: 0.9rem;
-                bottom: 20px;
+                bottom: 6px;
             }
         }
     </style>
@@ -308,7 +406,7 @@
                 <!-- 移除了窗口控制按钮和文件名 -->
             </div>
             <div class="transparent-dialog-body">
-                <pre><code class="language-c" id="code-display">// 代码将在这里以打字机效果显示...</code></pre>
+                <pre><code class="language-csharp" id="code-display">// 代码将在这里以打字机效果显示...</code></pre>
                 <div class="transparent-typing-cursor">|</div>
             </div>
         </div>
@@ -329,15 +427,55 @@
         </div>
     </div>
 
+    <!-- ASK1文本框 -->
+    <div class="ask-container" id="ask1-container">
+        <div class="ask-dialog">
+            <div class="ask-header">
+                <!-- 移除了窗口控制按钮 -->
+            </div>
+            <div class="ask-body">
+                <div class="ask-text" id="ask1-text">（笑着接过咬了一大口，嘴角沾了点糖浆）甜是甜了点，但味道超棒，你的眼光果然没错。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASK2文本框 -->
+    <div class="ask-container" id="ask2-container">
+        <div class="ask-dialog">
+            <div class="ask-header">
+                <!-- 移除了窗口控制按钮 -->
+            </div>
+            <div class="ask-body">
+                <div class="ask-text" id="ask2-text">（皱了皱眉，轻轻推开她的手）我不吃甜食，你自己留着吧。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASK3文本框 -->
+    <div class="ask-container" id="ask3-container">
+        <div class="ask-dialog">
+            <div class="ask-header">
+                <!-- 移除了窗口控制按钮 -->
+            </div>
+            <div class="ask-body">
+                <div class="ask-text" id="ask3-text">（看了眼手表，没接可丽饼，径直绕开她）赶时间，要迟到了。</div>
+            </div>
+        </div>
+    </div>
+
     <!-- 返回按钮 -->
     <button class="transparent-back-btn" onclick="goBack()">返回首页</button>
 
     <script>
-        // C 语言示例代码
-        const code = `#include <stdio.h>\n#include <stdlib.h>\n\n// 定义一个简单的结构体\nstruct Point {\n    int x;\n    int y;\n};\n\n// 函数声明\nvoid print_point(struct Point p);\n\nint main() {\n    printf("=== C语言示例程序 ===\\n\\n");\n    \n    // 结构体使用\n    struct Point p1 = {10, 20};\n    printf("点坐标: ");\n    print_point(p1);\n    \n    // 指针使用\n    struct Point *p_ptr = &p1;\n    printf("通过指针访问: x=%d, y=%d\\n", p_ptr->x, p_ptr->y);\n    \n    // 动态内存分配\n    int *numbers = (int*)malloc(5 * sizeof(int));\n    if (numbers == NULL) {\n        printf("内存分配失败!\\n");\n        return 1;\n    }\n    \n    printf("\\n动态数组元素: ");\n    for (int i = 0; i < 5; i++) {\n        numbers[i] = i * 10;\n        printf("%d ", numbers[i]);\n    }\n    printf("\\n");\n    \n    // 释放内存\n    free(numbers);\n    \n    printf("\\n程序执行完毕!\\n");\n    return 0;\n}\n\nvoid print_point(struct Point p) {\n    printf("(%d, %d)\\n", p.x, p.y);\n}`;
+        // 精简的示例代码
+        const csharpCode = `print("好巧！我特意买的双倍草莓酱，分你一半，快趁热吃，凉了就不好吃啦！")`;
 
-        // 对话框文本
-        const dialogText = "你好！";
+        // ASK文本框对应的回答数组
+        const askResponses = [
+            "Python：（笑着帮你擦掉嘴角糖浆）那当然！我排了十分钟队呢！快走啦，老师要查迟到了，被他抓到可要罚抄校规。",
+            "Python：（脸上的笑容一下垮掉，捏着可丽饼的手指紧了紧）啊...对不起，我忘了你不爱吃甜的...那我下次给你带咸口的金枪鱼饭团。",
+            "Python：（举着可丽饼愣在原地，小声嘀咕）欸？（反应过来后小跑着追在你身后）那我把可丽饼放你课桌抽屉里了，记得吃啊！"
+        ];
 
         // 打字机效果
         let codeIndex = 0;
@@ -359,8 +497,8 @@
             cursor.style.display = 'inline';
             
             function typeCharacter() {
-                if (codeIndex < code.length) {
-                    codeElement.textContent += code[codeIndex];
+                if (codeIndex < csharpCode.length) {
+                    codeElement.textContent += csharpCode[codeIndex];
                     codeIndex++;
                     
                     // 自动滚动到最新内容 - 确保始终显示底部
@@ -382,19 +520,23 @@
                         dialogBody.scrollTop = dialogBody.scrollHeight;
                     }
                     // 代码打字完成后开始对话框打字
-                    setTimeout(startDialogTyping, 500);
+                    setTimeout(() => startDialogTyping("（背着缀满挂饰的书包，举着热可丽饼蹦到你面前，眼睛亮晶晶的）好巧！我特意买的双倍草莓酱，分你一半，快趁热吃，凉了就不好吃啦！"), 500);
                 }
             }
             
             typeCharacter();
         }
 
-        function startDialogTyping() {
+        function startDialogTyping(text) {
             const dialogElement = document.getElementById('dialog-display');
             const dialogCursor = document.querySelector('.dialog-typing-cursor');
             const dialogBody = document.querySelector('.dialog-body');
             
-            if (isDialogTyping) return;
+            // 如果正在打字，先停止
+            if (isDialogTyping) {
+                isDialogTyping = false;
+            }
+            
             isDialogTyping = true;
             
             dialogElement.innerHTML = '';
@@ -402,8 +544,8 @@
             dialogCursor.style.display = 'inline';
             
             function typeDialogCharacter() {
-                if (dialogIndex < dialogText.length) {
-                    dialogElement.innerHTML += dialogText[dialogIndex];
+                if (dialogIndex < text.length && isDialogTyping) {
+                    dialogElement.innerHTML += text[dialogIndex];
                     dialogIndex++;
                     
                     // 自动滚动到最新内容
@@ -411,7 +553,7 @@
                         dialogBody.scrollTop = dialogBody.scrollHeight;
                     }
                     
-                    setTimeout(typeDialogCharacter, 80); // 对话框打字速度稍快
+                    setTimeout(typeDialogCharacter, 80);
                 } else {
                     // 打字完成
                     dialogCursor.style.display = 'none';
@@ -420,6 +562,24 @@
             }
             
             typeDialogCharacter();
+        }
+
+        // ASK文本框点击处理函数
+        function handleAskClick(askIndex) {
+            // 移除所有ASK文本框的激活状态
+            const allAskContainers = document.querySelectorAll('.ask-container');
+            allAskContainers.forEach(container => {
+                container.classList.remove('active');
+            });
+            
+            // 为当前点击的ASK文本框添加激活状态
+            const currentAskContainer = document.getElementById(`ask${askIndex + 1}-container`);
+            if (currentAskContainer) {
+                currentAskContainer.classList.add('active');
+            }
+            
+            // 在对话框文本框中显示对应的回答
+            startDialogTyping(askResponses[askIndex]);
         }
 
         // 返回首页
@@ -433,9 +593,14 @@
             if (hljs) {
                 hljs.configure({
                     tabReplace: '    ',
-                    languages: ['c']
+                    languages: ['csharp']
                 });
             }
+            
+            // 为ASK文本框添加点击事件
+            document.getElementById('ask1-container').addEventListener('click', () => handleAskClick(0));
+            document.getElementById('ask2-container').addEventListener('click', () => handleAskClick(1));
+            document.getElementById('ask3-container').addEventListener('click', () => handleAskClick(2));
             
             // 延迟0.5秒开始打字效果
             setTimeout(startTypingEffect, 500);
@@ -449,12 +614,20 @@
                     e.preventDefault();
                     startTypingEffect();
                 }
+                // 数字键1-3选择ASK文本框
+                if (e.key >= '1' && e.key <= '3') {
+                    const index = parseInt(e.key) - 1;
+                    handleAskClick(index);
+                }
             });
             
             // 调整文本框大小以适应图片显示
             function adjustCodeBoxPosition() {
                 const container = document.querySelector('.transparent-code-container');
                 const dialogContainer = document.querySelector('.dialog-container');
+                const ask1Container = document.getElementById('ask1-container');
+                const ask2Container = document.getElementById('ask2-container');
+                const ask3Container = document.getElementById('ask3-container');
                 
                 if (!container || !dialogContainer) return;
                 
@@ -484,25 +657,62 @@
                     const boxWidth = actualImgWidth * 0.3683;
                     const boxHeight = actualImgHeight * 0.2908;
                     
-                    // 根据比例计算对话框文本框位置 (43.00%, 49.40%, 33.50%, 9.39%)
+                    // 根据比例计算对话框文本框位置
                     const dialogBoxLeft = imgLeft + (actualImgWidth * 0.4300); // 43.00%
-                    const dialogBoxTop = imgTop + (actualImgHeight * 0.4940);  // 49.40%
+                    const dialogBoxTop = imgTop + (actualImgHeight * 0.4500);  // 49.40%
                     const dialogBoxWidth = actualImgWidth * 0.3350;            // 33.50%
-                    const dialogBoxHeight = actualImgHeight * 0.0939;          // 9.39%
+                    const dialogBoxHeight = actualImgHeight * 0.1439;          // 9.39%
                     
-                    // 应用计算后的位置到第一个文本框
+                    // 计算ASK文本框位置
+                    // 左边界: 0.36, 宽度: 0.502, 高度: 0.041
+                    const askLeft = imgLeft + (actualImgWidth * 0.36);
+                    const askWidth = actualImgWidth * 0.502;
+                    const askHeight = actualImgHeight * 0.041;
+                    
+                    // ASK1上边界: 0.702
+                    const ask1Top = imgTop + (actualImgHeight * 0.692);
+                    // ASK2上边界: 0.807
+                    const ask2Top = imgTop + (actualImgHeight * 0.797);
+                    // ASK3上边界: 0.907
+                    const ask3Top = imgTop + (actualImgHeight * 0.897);
+                    
+                    // 应用计算后的位置到代码文本框
                     container.style.position = 'absolute';
                     container.style.left = boxLeft + 'px';
                     container.style.top = boxTop + 'px';
                     container.style.width = boxWidth + 'px';
                     container.style.height = boxHeight + 'px';
                     
-                    // 应用计算后的位置到第二个文本框
+                    // 应用计算后的位置到对话框文本框
                     dialogContainer.style.position = 'absolute';
                     dialogContainer.style.left = dialogBoxLeft + 'px';
                     dialogContainer.style.top = dialogBoxTop + 'px';
                     dialogContainer.style.width = dialogBoxWidth + 'px';
                     dialogContainer.style.height = dialogBoxHeight + 'px';
+                    
+                    // 应用计算后的位置到ASK1文本框
+                    if (ask1Container) {
+                        ask1Container.style.left = askLeft + 'px';
+                        ask1Container.style.top = ask1Top + 'px';
+                        ask1Container.style.width = askWidth + 'px';
+                        ask1Container.style.height = askHeight + 'px';
+                    }
+                    
+                    // 应用计算后的位置到ASK2文本框
+                    if (ask2Container) {
+                        ask2Container.style.left = askLeft + 'px';
+                        ask2Container.style.top = ask2Top + 'px';
+                        ask2Container.style.width = askWidth + 'px';
+                        ask2Container.style.height = askHeight + 'px';
+                    }
+                    
+                    // 应用计算后的位置到ASK3文本框
+                    if (ask3Container) {
+                        ask3Container.style.left = askLeft + 'px';
+                        ask3Container.style.top = ask3Top + 'px';
+                        ask3Container.style.width = askWidth + 'px';
+                        ask3Container.style.height = askHeight + 'px';
+                    }
                 };
             }
             
