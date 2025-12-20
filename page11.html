@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C++ 语言介绍</title>
+    <title>java 语言介绍</title>
     <link rel="stylesheet" href="style.css">
     <!-- 引入代码高亮库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
@@ -17,7 +17,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background-image: url('images/back_Cplus.png');
+            background-image: url('images/back_Java.png');
             background-size: contain;  /* 改为contain以完整显示图片 */
             background-position: center;
             background-repeat: no-repeat;
@@ -434,7 +434,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask1-text">（走过去拿起咖啡，鞠躬道谢）谢谢黑羽老师，您居然还记得我的喜好。</div>
+                <div class="ask-text" id="ask1-text">（接过策划案认真翻看）纱月同学考虑得真周全，我觉得义卖环节可以增加互动游戏，你觉得怎么样？</div>
             </div>
         </div>
     </div>
@@ -446,7 +446,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask2-text">瞥了眼咖啡，挠挠头）谢谢老师，但我今天想喝甜的，就不麻烦您了。</div>
+                <div class="ask-text" id="ask2-text">（接过策划案随手放在桌上）随便吧，你定就行，我都听你的。</div>
             </div>
         </div>
     </div>
@@ -458,7 +458,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask3-text">（走到栏杆边，拿出物理错题本发呆，眉头紧锁）</div>
+                <div class="ask-text" id="ask3-text">（摇头拒绝）我不想和你一组，我要和我朋友一组。</div>
             </div>
         </div>
     </div>
@@ -468,27 +468,13 @@
 
     <script>
         // 精简的 C++ 示例代码
-        const cppCode = `#include <iostream>
-using namespace std;
-
-class Printer{
-public:
-    void printMsg(){
-        cout << "上次机房听你说提神靠这个，我多带了一罐。" << endl;
-    }
-};
-
-int main(){
-    Printer p;
-    p.printMsg();
-    return 0;
-}`;
+        const cppCode = `const textNode = document.createTextNode("reply");\nconst container = document.createElement("div")\ncontainer.appendChild(textNode);\ndocument.body.appendChild(container);\ndocument.body.innerHTML = "佐藤同学，这次班会活动我和你一组。这是活动策划案，你先看看，有什么想法我们课后讨论。";`;
 
         // ASK文本框对应的回答数组
         const askResponses = [
-            "C++：（视线落回题库，耳尖微泛红，语气平稳）你参赛代码有个逻辑漏洞，这里加个循环判断，下午机房我再带你测一遍。",
-            "C++：（指尖捏紧红笔，把咖啡往自己这边挪了挪）嗯，随你。",
-            "C++：（沉默片刻，拿过你的错题本，用指尖点着屏幕）这个递归函数没写终止条件。"
+            "Java：（点头表示赞同，拿出笔在策划案上做标注）这个建议很好，具体的游戏形式我们可以课后详细聊。（递给你一张便签）这是我的联系方式，有问题随时找我。",
+            "Java：（眉头微不可查地皱了一下，语气依旧沉稳）活动需要两个人共同参与，你的意见很重要。（在你桌前坐下）我们现在简单过一下流程，你有不同想法可以直接说。",
+            "Java：（愣了一下，随即恢复平静）分组是老师根据综合情况安排的，如果你有特殊原因，我们可以一起去找老师沟通。"
         ];
 
         // 打字机效果
@@ -534,7 +520,7 @@ int main(){
                         dialogBody.scrollTop = dialogBody.scrollHeight;
                     }
                     // 代码打字完成后开始对话框打字
-                    setTimeout(() => startDialogTyping("（从电脑包摸出罐无糖咖啡放石阶上）上次机房听你说提神靠这个，我多带了一罐。"), 500);
+                    setTimeout(() => startDialogTyping("站在讲台上，手里拿着分组名单，目光落在你身上，语气沉稳）佐藤同学，这次班会活动我和你一组。这是活动策划案，你先看看，有什么想法我们课后讨论。"), 500);
                 }
             }
             
@@ -647,7 +633,7 @@ int main(){
                 
                 // 获取图片实际显示尺寸
                 const img = new Image();
-                img.src = 'images/back_Cplus.png'; 
+                img.src = 'images/back_Java.png'; 
                 img.onload = function() {
                     const imgWidth = img.width;
                     const imgHeight = img.height;
