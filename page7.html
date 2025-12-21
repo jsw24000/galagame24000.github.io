@@ -434,7 +434,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask1-text">（接过饮料，笑着说）谢谢奈奈子，果然还是关心我的嘛。</div>
+                <div class="ask-text" id="ask1-text">谢谢奈奈子，果然还是关心我的嘛。</div>
             </div>
         </div>
     </div>
@@ -446,7 +446,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask2-text">（挑眉看着饮料）我不喝别人剩下的东西，你自己留着吧。</div>
+                <div class="ask-text" id="ask2-text">我不喝别人剩下的东西，你自己留着吧。</div>
             </div>
         </div>
     </div>
@@ -458,7 +458,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask3-text">（打开喝了一口，随手递给旁边的同学）味道不错，给你了。</div>
+                <div class="ask-text" id="ask3-text">味道不错，给你了。</div>
             </div>
         </div>
     </div>
@@ -472,9 +472,9 @@
 
         // ASK文本框对应的回答数组
         const askResponses = [
-            "Markdown：（脸瞬间红到耳根，抬手推了你的肩膀一下）谁、谁关心你了！我只是不想明天没人陪我练双打而已！（转身就跑，跑了几步又回头喊）喝完把瓶子扔进垃圾桶，别到处乱扔！",
-            "Markdown：（气得攥紧了拳头，脸颊鼓鼓的）你、你这个笨蛋！谁说是剩下的了！（把饮料狠狠塞到你怀里，跺了跺脚）爱喝不喝！",
-            "Markdown：（眼睛瞬间瞪圆，气得浑身发抖）白、白痴！（冲过来一把夺过同学手里的饮料扔进垃圾桶，指着你的鼻子说）以后再也不给你带任何东西了！（哭着跑开，体育课剩下的时间都躲在树荫下，再也没看你一眼）"
+            "Markdown：谁、谁关心你了！我只是不想明天没人陪我练双打而已！喝完把瓶子扔进垃圾桶，别到处乱扔！",
+            "Markdown：你、你这个笨蛋！谁说是剩下的了！爱喝不喝！",
+            "Markdown：白、白痴！以后再也不给你带任何东西了！"
         ];
 
         // 打字机效果
@@ -520,7 +520,7 @@
                         dialogBody.scrollTop = dialogBody.scrollHeight;
                     }
                     // 代码打字完成后开始对话框打字
-                    setTimeout(() => startDialogTyping("（穿着体操服，别别扭扭地走到你面前，手里拿着一瓶运动饮料，脸扭向一边）喂！刚才你跑步的时候差点摔倒，真是笨死了！这个...我买多了，没人喝，便宜你了！"), 500);
+                    setTimeout(() => startDialogTyping("喂！刚才你跑步的时候差点摔倒，真是笨死了！这个...我买多了，没人喝，便宜你了！"), 500);
                 }
             }
             

@@ -434,7 +434,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask1-text">（接过咬了一大口）甜是甜了点，但味道超棒，你的眼光果然没错。</div>
+                <div class="ask-text" id="ask1-text">甜是甜了点，但味道超棒，你的眼光果然没错。</div>
             </div>
         </div>
     </div>
@@ -446,7 +446,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask2-text">（皱了皱眉）我不吃甜食，你自己留着吧。</div>
+                <div class="ask-text" id="ask2-text">我不吃甜食，你自己留着吧。</div>
             </div>
         </div>
     </div>
@@ -458,7 +458,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask3-text">（看了眼手表，径直绕开她）赶时间，要迟到了。</div>
+                <div class="ask-text" id="ask3-text">赶时间，要迟到了。</div>
             </div>
         </div>
     </div>
@@ -472,9 +472,9 @@
 
         // ASK文本框对应的回答数组
         const askResponses = [
-            "Python：（笑着帮你擦掉嘴角糖浆）那当然！我排了十分钟队呢！快走啦，老师要查迟到了，被他抓到可要罚抄校规。",
-            "Python：（脸上的笑容一下垮掉，捏着可丽饼的手指紧了紧）啊...对不起，我忘了你不爱吃甜的...那我下次给你带咸口的金枪鱼饭团。",
-            "Python：（举着可丽饼愣在原地，小声嘀咕）欸？（反应过来后小跑着追在你身后）那我把可丽饼放你课桌抽屉里了，记得吃啊！"
+            "Python：那当然！我排了十分钟队呢！快走啦，老师要查迟到了，被他抓到可要罚抄校规。",
+            "Python：（啊...对不起，我忘了你不爱吃甜的...那我下次给你带咸口的金枪鱼饭团。",
+            "Python：欸？那我把可丽饼放你课桌抽屉里了，记得吃啊！"
         ];
 
         // 打字机效果
@@ -520,7 +520,7 @@
                         dialogBody.scrollTop = dialogBody.scrollHeight;
                     }
                     // 代码打字完成后开始对话框打字
-                    setTimeout(() => startDialogTyping("（背着缀满挂饰的书包，举着热可丽饼蹦到你面前，眼睛亮晶晶的）好巧！我特意买的双倍草莓酱，分你一半，快趁热吃，凉了就不好吃啦！"), 500);
+                    setTimeout(() => startDialogTyping("好巧！我特意买的双倍草莓酱，分你一半，快趁热吃，凉了就不好吃啦！"), 500);
                 }
             }
             

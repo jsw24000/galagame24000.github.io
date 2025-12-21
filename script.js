@@ -16,9 +16,14 @@ function goBack() {
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-        section.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
+        // 计算偏移量，考虑固定导航栏的高度
+        const offset = 80; // 导航栏高度
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
         });
     }
 }

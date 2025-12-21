@@ -434,7 +434,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask1-text">（鞠躬道谢）谢谢清和老师，还麻烦您特意等我。</div>
+                <div class="ask-text" id="ask1-text">谢谢清和老师，还麻烦您特意等我。</div>
             </div>
         </div>
     </div>
@@ -446,7 +446,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask2-text">（接过报告随手塞进口袋）知道了，反正也不影响打球。</div>
+                <div class="ask-text" id="ask2-text">知道了，反正也不影响打球。</div>
             </div>
         </div>
     </div>
@@ -458,7 +458,7 @@
                 <!-- 移除了窗口控制按钮 -->
             </div>
             <div class="ask-body">
-                <div class="ask-text" id="ask3-text">（没接报告，摆摆手）老师您放这儿吧，队友还在球场等我。</div>
+                <div class="ask-text" id="ask3-text">老师您放这儿吧，队友还在球场等我。</div>
             </div>
         </div>
     </div>
@@ -472,9 +472,9 @@
 
         // ASK文本框对应的回答数组
         const askResponses = [
-            "Rust：（眼神微不可查地动了一下）不吃早饭是主要原因。（转身从药柜拿了袋红枣）每天带两颗当加餐，比喝功能饮料管用。",
-            "Rust：（眉头皱起，眼神冷了几分）长期低血压会头晕乏力，真在球场上晕倒怎么办？（转身把红枣放在桌上）拿着，这是医嘱。（走到门口时回头瞪了你一眼，眼神里满是失望）",
-            "Rust：（沉默地看着你，几秒后把报告和红枣一起放进密封袋，贴在医务处门口的公示板上）（转身离开时，声音不大却清晰）要是在球场不舒服，第一时间来医务处，别硬撑。"
+            "Rust：不吃早饭是主要原因。每天带两颗当加餐，比喝功能饮料管用。",
+            "Rust：长期低血压会头晕乏力，真在球场上晕倒怎么办？拿着，这是医嘱。",
+            "Rust：（要是在球场不舒服，第一时间来医务处，别硬撑。"
         ];
 
         // 打字机效果
@@ -520,7 +520,7 @@
                         dialogBody.scrollTop = dialogBody.scrollHeight;
                     }
                     // 代码打字完成后开始对话框打字
-                    setTimeout(() => startDialogTyping("（穿白大褂，手里拿着你的体检报告，指尖夹着钢笔，表情没什么起伏）你的体检报告，上午课间让同学送教室没找到你。血压有点偏低，记得三餐规律。"), 500);
+                    setTimeout(() => startDialogTyping("你的体检报告，上午课间让同学送教室没找到你。血压有点偏低，记得三餐规律。"), 500);
                 }
             }
             
